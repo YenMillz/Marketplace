@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.marketplace.mapper.ProductMapper">
+    <resultMap id="productResponseResultMap" type="ProductResponse">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="price" column="price"/>
+        <result property="description" column="description"/>
+        <result property="likes" column="likes"/>
+        <result property="unlikes" column="unlikes"/>
+    </resultMap>
+
+    <sql id="findProducts">
+        select id,
+               title,
+               price,
+               description,
+               (select count(1) from rating where product_id = id and is_like = true)  as likes,
+               (select count(1) from rating where product_id = id and is_like = false) as unlikes,
+               user_id as userId
+        from products
+    </sql>
+
+    <select id="findAll" resultMap="productResponseResultMap">
+        <include refid="findProducts"/>
+    </select>
+
+    <select id="findAllUserProducts" resultMap="productResponseResultMap">
+        <include refid="findProducts"/>
+        where user_id = #{userId}
+    </select>
+
+    <select id="findProductById" resultMap="productResponseResultMap">
+        <include refid="findProducts"/>
+        where id = #{productId}
+    </select>
+
+    <select id="findUserProductById" resultMap="productResponseResultMap">
+        <include refid="findProducts"/>
+        where id = #{productId}
+        and user_id = #{userId}
+    </select>
+
+    <select id="createUserProduct" resultMap="productResponseResultMap">
+        insert into products(title, price, description, user_id)
+        values (#{title}, #{price}, #{description}, #{userId})
+        returning id, title, price, description
+    </select>
+
+    <select id="updateUserProduct" resultMap="productResponseResultMap">
+        update products
+        set title = #{title},
+        price = #{price},
+        description = #{description}
+        where id = #{id} and user_id = #{userId}
+        returning id, title, price, description
+    </select>
+
+    <delete id="deleteUserProduct">
+        delete
+        from products
+        where id = #{productId}
+    </delete>
+
+
+</mapper>

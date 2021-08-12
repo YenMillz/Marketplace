@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.marketplace.mapper.UserMapper">
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <resultMap id="registrationResultMap" type="RegistrationResponse">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <select id="save" resultMap="registrationResultMap">
+        insert into users(username, email, password)
+        values (#{username}, #{email}, #{password})
+        returning id, username, email
+    </select>
+
+    <!--Select userEntity by username-->
+    <select id="findByUsername" resultMap="userResultMap">
+        select *
+        from users
+        where username = #{username}
+    </select>
+
+    <select id="findById" resultMap="userResultMap">
+        select *
+        from users
+        where id = #{id}
+    </select>
+
+    <select id="findByEmail" resultMap="userResultMap">
+        select *
+        from users
+        where email = #{email}
+    </select>
+
+</mapper>

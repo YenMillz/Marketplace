@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.marketplace.mapper.RatingMapper">
+    <resultMap id="ratingResultMap" type="Rating">
+        <id property="userId" column="user_id" />
+        <id property="productId" column="product_id" />
+        <result property="like" column="is_like" />
+    </resultMap>
+
+    <select id="findRatingById" resultMap="ratingResultMap">
+        select
+            user_id as userId,
+            product_id as productId,
+            is_like as "like"
+        from rating
+        where user_id = #{userId} and product_id = #{productId}
+    </select>
+
+    <insert id="createRating">
+        insert into rating(user_id, product_id, is_like)
+        values(#{userId}, #{productId}, #{like})
+    </insert>
+
+    <update id="updateRating">
+        update rating
+        set is_like = #{like}
+        where user_id = #{userId} and product_id = #{productId}
+    </update>
+</mapper>

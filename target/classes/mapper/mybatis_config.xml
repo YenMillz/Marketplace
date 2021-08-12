@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config  3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.example.marketplace.model.Product" alias="Product"/>
+        <typeAlias type="com.example.marketplace.payload.response.ProductResponse" alias="ProductResponse"/>
+        <typeAlias type="com.example.marketplace.payload.response.RegistrationResponse" alias="RegistrationResponse"/>
+        <typeAlias type="com.example.marketplace.model.User" alias="User"/>
+        <typeAlias type="com.example.marketplace.model.RefreshToken" alias="RefreshToken"/>
+        <typeAlias type="com.example.marketplace.model.Rating" alias="Rating"/>
+    </typeAliases>
+</configuration>
