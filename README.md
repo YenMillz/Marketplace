@@ -40,7 +40,7 @@ Requirements for the software and other tools to build, test and push
 
 **1. Clone the repo from GitHub**
    
-    git clone https://github.com/...
+    git clone https://github.com/YenMillz/Marketplace
 
 **2. Spin-up PostgreSQL database instance**
 
