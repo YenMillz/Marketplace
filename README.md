@@ -28,7 +28,7 @@ To secure endpoints, I've used bearer key provided by
 jjwt library, and configured with swagger3. MyBatis was used to
 perform CRUD operation with database. At the last, FlyWay guarantees
 database migration to future versions.
-All APIs are "self-documented" by OpenApi3 using annotations.
+All APIs are "self-documented" by OpenApi3, using annotations.
 
 ### Prerequisites
 
