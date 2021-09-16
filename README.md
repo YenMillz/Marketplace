@@ -21,7 +21,7 @@ to register a new user or login with created one and to manage products.
 
 ## Getting Started
 
-Marketplace is just a simple platform where people
+Marketplace is a simple platform where people
 regularly gather for the purchase and sale of goods. 
 It uses a relational database (PostgreSQL) to store the data. 
 To secure endpoints, I've used bearer key provided by 
